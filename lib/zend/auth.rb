@@ -47,9 +47,7 @@ module Zend
 
       def unauthorized_callback(api)
         api.insert_callback do |response|
-          if response[:status] == 401
-            Kernel.abort 'Incorrect Zendesk API authentication credentials'
-          end
+          authentication_failed if response[:status] == 401
         end
       end
 
@@ -128,10 +126,26 @@ module Zend
         @credentials
       end
 
+      def authentication_failed
+        say 'Authentication failed.'
+        if retry_login?
+          ask_for_and_save_credentials
+        else
+          delete_credentials
+          exit 1
+        end
+      end
+
       def ask_secret(message)
         HighLine.new.ask(message) do |q|
           q.echo = false
         end
+      end
+
+      def retry_login?
+        @login_attempts ||= 0
+        @login_attempts += 1
+        @login_attempts < 3
       end
     end
   end
