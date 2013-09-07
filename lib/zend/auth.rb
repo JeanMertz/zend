@@ -89,7 +89,7 @@ module Zend
           netrc.delete(domain)
           netrc.save
         end
-        @email, @password = nil
+        @api, @account, @credentials = nil
       end
 
       def read_credentials
@@ -128,10 +128,11 @@ module Zend
 
       def authentication_failed
         say 'Authentication failed.'
+        delete_credentials
+
         if retry_login?
           ask_for_and_save_credentials
         else
-          delete_credentials
           exit 1
         end
       end
