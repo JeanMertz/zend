@@ -10,7 +10,7 @@ module Zend
           @api = ZendeskAPI::Client.new do |config|
             config.url = "https://#{domain}/api/v2"
             config.username = user
-            config.token = password
+            config.password = password
           end
           unauthorized_callback(@api)
         end
@@ -91,7 +91,7 @@ module Zend
           netrc.delete(domain)
           netrc.save
         end
-        @email, @token = nil
+        @email, @password = nil
       end
 
       def read_credentials
@@ -115,9 +115,9 @@ module Zend
         say 'Enter your Zendesk credentials.' if ENV['ZEND_ACCOUNT']
 
         email = ask 'E-mail address: '
-        token = ask_token 'Secret token (typing will be hidden): '
+        password = ask_secret 'Password (typing will be hidden): '
 
-        [email, token]
+        [email, password]
       end
 
       def ask_for_and_save_credentials
@@ -128,7 +128,7 @@ module Zend
         @credentials
       end
 
-      def ask_token(message)
+      def ask_secret(message)
         HighLine.new.ask(message) do |q|
           q.echo = false
         end
