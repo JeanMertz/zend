@@ -5,5 +5,10 @@ module Zend
     def login
       Zend::Auth.login
     end
+
+    desc 'ticket details', 'Get details of a Zendesk ticket'
+    def show(ticket_id)
+      puts Zend::Command::Ticket.new(ticket_id).print
+    end
   end
 end
