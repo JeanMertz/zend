@@ -11,7 +11,7 @@ module Zend
       Zend::Auth.logout
     end
 
-    desc 'ticket details', 'Get details of a Zendesk ticket'
+    desc 'show <ticket id>', 'Get details of a Zendesk ticket'
     def show(ticket_id)
       puts Zend::Command::Ticket.new(ticket_id).print
     end
