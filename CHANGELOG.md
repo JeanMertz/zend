@@ -1,3 +1,9 @@
+## 0.1.2 (September 7, 2013)
+
+Bugfixes:
+
+  - correctly unset credentials on authentication retry
+
 ## 0.1.1 (September 7, 2013)
 
 Bugfixes:
