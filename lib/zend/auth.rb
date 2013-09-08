@@ -39,8 +39,6 @@ module Zend
         get_credentials[1]
       end
 
-    private
-
       def get_account
         @account ||= (ENV['ZEND_ACCOUNT'] || ask_for_account)
       end
