@@ -1,5 +1,7 @@
 # Zend
 
+<a href="http://badge.fury.io/rb/zend"><img src="https://badge.fury.io/rb/zend@2x.png" alt="Gem Version" height="18"></a> <a href="https://codeclimate.com/github/JeanMertz/zend"><img src="https://codeclimate.com/github/JeanMertz/zend.png" /></a> <a href='https://gemnasium.com/JeanMertz/zend'><img src="https://gemnasium.com/JeanMertz/zend.png" alt="Dependency Status" /></a>
+
 TODO: Write a gem description
 
 ## Installation
