@@ -1,6 +1,6 @@
 # Zend
 
-<a href="http://badge.fury.io/rb/zend"><img src="https://badge.fury.io/rb/zend@2x.png" alt="Gem Version" height="18"></a> <a href="https://codeclimate.com/github/JeanMertz/zend"><img src="https://codeclimate.com/github/JeanMertz/zend.png" /></a> <a href='https://gemnasium.com/JeanMertz/zend'><img src="https://gemnasium.com/JeanMertz/zend.png" alt="Dependency Status" /></a>
+<a href="http://badge.fury.io/rb/zend"><img src="https://badge.fury.io/rb/zend@2x.png" alt="Gem Version" height="18"></a> <a href="https://codeclimate.com/github/JeanMertz/zend"><img src="https://codeclimate.com/github/JeanMertz/zend.png" /></a> <a href='https://gemnasium.com/JeanMertz/zend'><img src="https://gemnasium.com/JeanMertz/zend.png" alt="Dependency Status" /></a> [![Build Status](https://travis-ci.org/JeanMertz/zend.png)](https://travis-ci.org/JeanMertz/zend)
 
 TODO: Write a gem description
 
