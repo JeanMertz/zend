@@ -6,16 +6,11 @@ module Zend
   class Auth
     class << self
       def api
-        unless @api
-          @api = ZendeskAPI::Client.new do |config|
-            config.url = "https://#{domain}/api/v2"
-            config.username = user
-            config.password = password
-          end
-          unauthorized_callback(@api)
+        @api ||= ZendeskAPI::Client.new do |config|
+          config.url = "https://#{domain}/api/v2"
+          config.username = user
+          config.password = password
         end
-
-        @api
       end
 
       def login
@@ -43,14 +38,10 @@ module Zend
         @account ||= (ENV['ZEND_ACCOUNT'] || ask_for_account)
       end
 
-      def unauthorized_callback(api)
-        api.insert_callback do |response|
-          authentication_failed if response[:status] == 401
-        end
-      end
-
       def verify
-        api.users.first
+        api.users.fetch!
+      rescue ZendeskAPI::Error::NetworkError => e
+        authentication_failed if e.to_s.include?('401')
       end
 
       def netrc_path
