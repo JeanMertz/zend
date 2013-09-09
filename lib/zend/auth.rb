@@ -35,7 +35,11 @@ module Zend
       end
 
       def get_account
-        @account ||= (ENV['ZEND_ACCOUNT'] || ask_for_account)
+        @account ||= (env_zend_account || ask_for_account)
+      end
+
+      def env_zend_account
+        ENV['ZEND_ACCOUNT']
       end
 
       def verify
@@ -99,7 +103,7 @@ module Zend
       end
 
       def ask_for_credentials
-        say 'Enter your Zendesk credentials.' if ENV['ZEND_ACCOUNT']
+        say 'Enter your Zendesk credentials.' if env_zend_account
 
         email = ask 'E-mail address: '
         password = ask_secret 'Password (typing will be hidden): '

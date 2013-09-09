@@ -11,12 +11,11 @@ module Zend
     before do
       allow(auth).to receive(:say)
       allow(auth).to receive(:verify)
+      allow(auth).to receive(:env_zend_account)
       allow(auth).to receive(:ask_for_account).and_return(account)
       allow(auth).to receive(:ask_for_credentials).and_return([user, pass])
       allow(auth).to receive(:netrc_path).and_return(netrc)
     end
-
-    # after { Zend::Auth.delete_credentials }
 
     describe '.api' do
       it 'returns an instance of ZendeskAPI::Client' do
