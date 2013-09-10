@@ -65,12 +65,10 @@ module Zend
           expect(File.read(netrc)).to include "password #{pass}"
         end
 
-        # TODO: unstubbing .verify hits the actual API, needs fixing
-        # => https://github.com/zendesk/zendesk_api_client_rb/issues/120
         it 'grants three login attempts' do
           auth.unstub(:verify)
           expect(auth).to receive(:ask_for_credentials).exactly(3).times
-          expect{ auth.login }.to raise_error(SystemExit)
+          expect{ VCR.use_cassette(:failed_auth) { auth.login } }.to raise_error(SystemExit)
         end
       end
     end

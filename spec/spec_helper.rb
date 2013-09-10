@@ -1,4 +1,12 @@
 require 'zend'
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/cassettes'
+  c.default_cassette_options = { decode_compressed_response: true, serialize_with: :json, preserve_exact_body_bytes: true }
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
+end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
