@@ -8,6 +8,14 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 end
 
+def stubbed_api
+  @stubbed_api ||= ZendeskAPI::Client.new do |config|
+    config.url = 'https://z3ntest76.zendesk.com/api/v2'
+    config.username = 'jean@mertz.fm'
+    config.password = 'password123'
+  end
+end
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true

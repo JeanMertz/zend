@@ -4,14 +4,17 @@ module Zend::Command
       attr_reader :ticket
 
       def initialize(id)
-        @ticket = api.tickets.find(id: id, include: :users)
+        @ticket = remote_ticket(id)
 
-        puts(table)
-        puts(ticket.description)
+        puts(output)
+      end
+
+      def output
+        table.to_s + ticket.description
       end
 
       def table
-        puts Terminal::Table.new(
+        Terminal::Table.new(
           style: {
             width: terminal_width,
             padding_left: 3
@@ -28,6 +31,10 @@ module Zend::Command
       end
 
     private
+
+      def remote_ticket(id)
+        api.tickets.find(id: id, include: :users)
+      end
 
       def col_subject
         "##{ticket.id}: #{ticket.subject}"
