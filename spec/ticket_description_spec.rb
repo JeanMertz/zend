@@ -18,8 +18,8 @@ module Zend::Command
       let(:comment) { nil }
 
       it 'prints ticket description' do
-        expect(output).to include "Zendesk ##{ticket.id}: "
-        expect(output).to match /"#{ticket.subject}"\Z/
+        expect(output).to start_with "Zendesk ##{ticket.id}: "
+        expect(output).to end_with "\"#{ticket.subject}\""
       end
     end
 
@@ -27,7 +27,7 @@ module Zend::Command
       let(:comment) { 'this is a comment' }
 
       it 'appends comment to ticket description' do
-        expect(output).to match /#{comment}\Z/
+        expect(output).to end_with " - #{comment}"
       end
     end
   end
