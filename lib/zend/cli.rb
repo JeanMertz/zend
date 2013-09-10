@@ -11,9 +11,13 @@ module Zend
       Zend::Auth.logout
     end
 
-    desc 'show <ticket id>', 'Get details of a Zendesk ticket'
-    def show(ticket_id)
-      puts Zend::Command::Ticket.new(ticket_id).print
+    class Tickets < Thor
+      desc 'show ID', 'Get details of a Zendesk ticket'
+      def show(id)
+        Zend::Command::Ticket::Show.new(id)
+      end
     end
+    desc 'tickets SUBCOMMAND ...ARGS', 'manage tickets'
+    subcommand 'tickets', CLI::Tickets
   end
 end
