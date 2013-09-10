@@ -98,7 +98,10 @@ module Zend
       end
 
       def ask_for_account
-        say "Enter your Zendesk account (subdomain). Set a ZEND_ACCOUNT environment variable to skip this step.\n\n"
+        unless @login_attempts
+          say "Enter your Zendesk account (subdomain). Set a ZEND_ACCOUNT environment variable to skip this step.\n\n"
+        end
+
         @account = ask 'Zendesk subdomain: '
       end
 
@@ -120,7 +123,7 @@ module Zend
       end
 
       def authentication_failed
-        say 'Authentication failed.'
+        say "Authentication failed.\n\n"
         delete_credentials
 
         if retry_login?
