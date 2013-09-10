@@ -1,3 +1,15 @@
+## 0.2.0 (September 10, 2013)
+
+Features:
+
+  - move `zend show` to `zend ticket show ID` namespace
+  - `zend ticket list [QUERY] [OPTIONS]` to list tickets based on
+    query/status
+  - `zend ticket description ID [COMMENT]` to print string for easy
+    pasting to Harvest descriptions (or other logs)
+  - move away from callbacks and instead use exception handling for
+    unauthenticated access
+
 ## 0.1.2 (September 7, 2013)
 
 Bugfixes:
