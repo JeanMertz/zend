@@ -40,5 +40,5 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.before { $stdout.stub(:write) }
-  config.after  { $stdout.unstub(:write) }
+  config.after  { $stdout.unstub(:write) rescue false }
 end
