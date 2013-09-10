@@ -16,6 +16,18 @@ def stubbed_api
   end
 end
 
+def capture_stdout(&block)
+  $stdout.unstub(:write)
+  original_stdout = $stdout
+  $stdout = captured_stdout = StringIO.new
+  begin
+    yield
+  ensure
+    $stdout = original_stdout
+  end
+  captured_stdout.string
+end
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
@@ -26,4 +38,7 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
+
+  config.before { $stdout.stub(:write) }
+  config.after  { $stdout.unstub(:write) }
 end
