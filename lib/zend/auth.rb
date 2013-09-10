@@ -124,6 +124,7 @@ module Zend
         delete_credentials
 
         if retry_login?
+          get_account
           ask_for_and_save_credentials
         else
           exit 1
