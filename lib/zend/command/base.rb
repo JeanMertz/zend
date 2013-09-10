@@ -10,6 +10,25 @@ class Zend::Command::Base
     80
   end
 
+  def truncate(text, length, options = {})
+    options[:omission] ||= "..."
+
+    length_with_room_for_omission = length - options[:omission].length
+    chars = text
+    stop = options[:separator] ?
+      (chars.rindex(options[:separator], length_with_room_for_omission) || length_with_room_for_omission) : length_with_room_for_omission
+
+    (chars.length > length ? chars[0...stop] + options[:omission] : text).to_s
+  end
+
+  def is_num?(str)
+    begin
+      !!Integer(str)
+    rescue ArgumentError, TypeError
+      false
+    end
+  end
+
 private
 
   def unix?
