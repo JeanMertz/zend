@@ -1,3 +1,9 @@
+## 0.2.1 (September 10, 2013)
+
+Bugfixes:
+
+  - fix `zend help` output
+
 ## 0.2.0 (September 10, 2013)
 
 Features:
