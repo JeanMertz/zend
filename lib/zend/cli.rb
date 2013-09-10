@@ -16,6 +16,11 @@ module Zend
       def show(id)
         Zend::Command::Ticket::Show.new(id)
       end
+
+      desc 'description ID [DESCRIPTION]', 'Get single line ticket description'
+      def description(id, description=nil)
+        Zend::Command::Ticket::Description.new(id, description)
+      end
     end
     desc 'tickets SUBCOMMAND ...ARGS', 'manage tickets'
     subcommand 'tickets', CLI::Tickets
